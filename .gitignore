@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Editor / IDE
+.vscode/
+.idea/
+.claude/
+
+# Demo artifacts (mirrors sam_refine/.gitignore for safety)
+sam_refine/outputs/
+sam_refine/checkpoints/sam_vit_h_4b8939.pth
+sam_refine/checkpoints/sam_vit_l_0b3195.pth
+sam_refine/checkpoints/sam_vit_b_01ec64.pth
+sam_refine/data/refine35_rerun/
+sam_refine/data/refinevis35_rerun/
+
+# Model / large binary artifacts
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.bin
+
+# Logs
+*.log

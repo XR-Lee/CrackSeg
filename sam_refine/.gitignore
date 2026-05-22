@@ -1,0 +1,6 @@
+outputs/
+checkpoints/
+data/refine35_rerun/
+data/refinevis35_rerun/
+__pycache__/
+*.py[cod]
