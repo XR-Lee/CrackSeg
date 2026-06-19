@@ -1,0 +1,10 @@
+numpy
+opencv-python
+open3d
+scipy
+scikit-image
+matplotlib
+plantcv
+tqdm
+transformations
+pandas

@@ -1,0 +1,17 @@
+{
+  "image_width": 4096,
+  "image_height": 3000,
+  "intrinsic_matrix": [
+    [4818.200388954926, 0.0, 2032.4178620390019],
+    [0.0, 4819.10345841615, 1535.1895959282901],
+    [0.0, 0.0, 1.0]
+  ],
+  "distortion_coefficients": [
+    0.003043514741045163,
+    0.06634739187544138,
+    -0.000217681797407554,
+    -0.0006654964142658197,
+    0.0
+  ],
+  "notes": "Paper dataset Hikrobot camera calibration. OpenCV distortion order: k1, k2, p1, p2, k3."
+}

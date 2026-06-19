@@ -1,0 +1,59 @@
+common:
+    lid_topic:  "/Pandar/XT32_M2X/pandar"
+    imu_topic:  "/wit/imu"
+    camera_topic: "/hikrobot_camera/rgb"
+    time_sync_en: true         # ONLY turn on when external time synchronization is really not possible
+    time_offset_lidar_to_imu: 0.0 # Time offset between lidar and IMU calibrated by other algorithms, e.g. LI-Init (can be found in README).
+                                  # This param will take effect no matter what time_sync_en is. So if the time offset is not known exactly, please set as 0.0
+
+preprocess:
+    lidar_type: 4                # 1 for Livox serials LiDAR, 2 for Velodyne LiDAR, 3 for ouster LiDAR, 
+    scan_line: 32
+    scan_rate: 10                # only need to be set for velodyne, unit: Hz,
+    timestamp_unit: 0            # the unit of time/t field in the PointCloud2 rostopic: 0-second, 1-milisecond, 2-microsecond, 3-nanosecond.
+    blind: 1.0
+    max_range: 20.0
+
+color_mapping:
+    K_camera: [4818.200388954926, 0.0, 2032.4178620390019,
+                0.0,   4819.10345841615, 1535.1895959282901,
+                0.0, 0.0, 1.0]
+    D_camera: [0.003043514741045163, 0.06634739187544138, -0.000217681797407554, -0.0006654964142658197, 0]
+    time_offset_lidar_to_camera: 0.0                # ms
+    # Extrinsic of 2024.02.01, 
+    # From confluence: https://smart-concrete.atlassian.net/wiki/spaces/SC/pages/8060979/Calibration+result+summary+updated+2024+02+01
+    extrinsic_T: [0.071771636420221, -0.04934294727365431, -0.0677501086411397]          #  camera wrt. lidar
+    extrinsic_R: [-0.99993085, -0.00561199, -0.0103344,
+                  0.01032389,  0.00189784, -0.99994491,
+                  0.0056313,  -0.99998245, -0.00183977]
+
+    # # Extrinsic of 2024.04.10, 
+    # extrinsic_T: [0.12287685909972107, -0.041141602501821334, -0.09488286471992269]          #  camera wrt. lidar
+    # extrinsic_R: [-0.9991766752435669, -0.016162080171022553, -0.03721234759804172, 
+    #             0.037291836532918544, -0.004644922770477985, -0.9992936223255198, 
+    #             0.015977815157715496, -0.9998585959309456, 0.005243812142339069]    
+    max_time_diff: 10.0 # image frame will be selected if the time difference bet. current lidar scan and img is less than this value
+
+mapping:
+    acc_cov: 0.1
+    gyr_cov: 0.1
+    b_acc_cov: 0.0001
+    b_gyr_cov: 0.0001
+    fov_degree:    180
+    det_range:     100.0
+    extrinsic_est_en:  false      # true: enable the online estimation of IMU-LiDAR extrinsic,
+    extrinsic_T: [  -0.06433602, 0.04798613, 0.10092374]
+    extrinsic_R: [-0.99993283,  0.00906085, -0.00720715, 
+                  -0.0092566 , -0.99957592,  0.02760647,
+                -0.00695394,  0.02767132,  0.99959334]
+
+publish:
+    path_en:  false
+    scan_publish_en:  true       # false: close all the point cloud output
+    dense_publish_en: true       # false: low down the points number in a global-frame point clouds scan.
+    scan_bodyframe_pub_en: true  # true: output the point cloud scans in IMU-body-frame
+
+pcd_save:
+    pcd_save_en: true
+    interval: -1                 # how many LiDAR frames saved in each pcd file; 
+                                 # -1 : all frames will be saved in ONE pcd file, may lead to memory crash when having too much frames.

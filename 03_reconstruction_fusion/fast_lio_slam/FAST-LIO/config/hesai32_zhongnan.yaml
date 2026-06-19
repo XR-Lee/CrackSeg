@@ -1,0 +1,43 @@
+common:
+    lid_topic:  "/Pandar/XT32_M2X/pandar"
+    imu_topic:  "/wit/imu"
+    time_sync_en: true         # ONLY turn on when external time synchronization is really not possible
+    time_offset_lidar_to_imu: 0.0 # Time offset between lidar and IMU calibrated by other algorithms, e.g. LI-Init (can be found in README).
+                                  # This param will take effect no matter what time_sync_en is. So if the time offset is not known exactly, please set as 0.0
+
+preprocess:
+    lidar_type: 4                # 1 for Livox serials LiDAR, 2 for Velodyne LiDAR, 3 for ouster LiDAR, 
+    scan_line: 32
+    timestamp_unit: 0            # the unit of time/t field in the PointCloud2 rostopic: 0-second, 1-milisecond, 2-microsecond, 3-nanosecond.
+    blind: 0.5
+    max_range: 10
+
+mapping:
+    acc_cov: 0.01
+    gyr_cov: 0.01
+    b_acc_cov: 0.0001
+    b_gyr_cov: 0.0001
+    fov_degree:    180
+    det_range:     5.0
+    extrinsic_est_en:  false      # true: enable the online estimation of IMU-LiDAR extrinsic,
+    # extrinsic_T: [  0, 0, 0]
+    # extrinsic_R: [ -1, 0,  0,
+    #              0, -1,  0,  
+    #               0, 0, 1]
+    extrinsic_T: [  -0.06433602, 0.04798613, 0.10092374]
+    extrinsic_R: [-0.99993283,  0.00906085, -0.00720715, 
+                  -0.0092566 , -0.99957592,  0.02760647,
+                -0.00695394,  0.02767132,  0.99959334]
+
+    gravity_m_s2: 9.81
+
+publish:     
+    scan_publish_en:  true       # 'false' will close all the point cloud output
+    dense_publish_en: false       # false will low down the points number in a global-frame point clouds scan.
+    scan_bodyframe_pub_en: true  # output the point cloud scans in a body frame
+    publish_cloud_in_imu_frame: false # output the point cloud scans in IMU-frame or lidar-frame
+
+pcd_save:
+    pcd_save_en: true
+    interval: -1                 # how many LiDAR frames saved in each pcd file; 
+                                 # -1 : all frames will be saved in ONE pcd file.

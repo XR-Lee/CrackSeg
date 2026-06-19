@@ -1,0 +1,80 @@
+<launch>
+    <!-- Global arguments -->
+    <arg name="rviz" default="true" />
+    <arg name="save_directory" default="$(find fast_lio)/result/zhongnan-slam-0322" />
+    <arg name="terminate_at_end" default="true" />
+    <arg name="bag_path" default=""/>
+
+    <!-- Group for the first package -fast_lio, with a specific namespace -->
+    <group ns="fast_lio">
+        <rosparam command="load" file="$(find fast_lio)/config/hesai32_zhongnan.yaml" />
+        <param name="feature_extract_enable" type="bool" value="0"/>
+        <param name="point_filter_num" type="int" value="2"/>
+        <param name="max_iteration" type="int" value="10000" />
+        <param name="scan_publish_enable" type="bool" value="1" />
+        <param name="dense_publish_enable" type="bool" value="1" />
+        <param name="filter_size_surf" type="double" value="0.05" />
+        <param name="filter_size_map" type="double" value="0.05" />
+        <param name="cube_side_length" type="double" value="1000" />
+        <param name="runtime_pos_log_enable" type="bool" value="0" />
+        <param name="pcd_save_enable" type="bool" value="1" />
+        <param name="save_directory" type="string" value="$(arg save_directory)" />
+        <node pkg="fast_lio" type="fastlio_mapping" name="laserMapping" output="screen" /> 
+
+        <!-- RViz node for the first package -->
+        <!-- <group if="$(arg rviz)">
+            <node launch-prefix="nice" pkg="rviz" type="rviz" name="fastlio_rviz" args="-d $(find fast_lio)/rviz_cfg/loam_livox.rviz" />
+        </group> -->
+    </group>
+
+    <!-- Group for the second package - SCPGO with a different namespace -->
+    <group ns="aloam_velodyne">
+        <param name="terminate_at_end" type="bool" value="$(arg terminate_at_end)"/>
+        <param name="scan_line" type="int" value="32" />
+        <param name="lidar_type" type="string" value="HDL32"/>
+
+        <!-- aloam parameters, ignore them         -->
+        <param name="mapping_skip_frame" type="int" value="1" />
+        <param name="minimum_range" type="double" value="0.5"/>
+        <param name="mapping_line_resolution" type="double" value="0.2"/>
+        <param name="mapping_plane_resolution" type="double" value="0.4"/>
+
+        <!-- delta movement rejection for selecting keyframes-->
+            <!-- keyframe_meter_gap: default 0.2 -->
+        <param name="keyframe_meter_gap" type="double" value="0.2"/> 
+            <!-- keyframe_deg_gap: default 10.0 -->
+        <param name="keyframe_deg_gap" type="double" value="10.0"/> 
+        
+        <param name="sc_dist_thres" type="double" value="0.1"/>
+        <param name="sc_max_radius" type="double" value="40.0"/>         <!-- 80 is recommended for outdoor, and lower (ex, 20, 40) values are recommended for indoor  -->
+        <param name="sc_filter_size" type="double" value="0.4"/>
+
+        <!-- loop closure -->
+        <param name="radius_search" type="bool" value="1" />
+        <param name="historyKeyframeSearchRadius" type="double" value="10.0"/>
+            <!-- historyKeyframeSearchTimeDiff: default 30.0 -->
+        <param name="historyKeyframeSearchTimeDiff" type="double" value="10.0"/>
+            <!-- historyKeyframeSearchNum: default 25  -->
+        <param name="historyKeyframeSearchNum" type="int" value="25"/>
+            <!-- loopNoiseScore: default 0.5 -->
+        <param name="loopNoiseScore" type="double" value="0.5"/>
+            <!-- graphUpdateTimes: unused -->
+        <param name="graphUpdateTimes" type="int" value="2"/> 
+        <param name="loopFitnessScoreThreshold" type="double" value="0.3"/>
+        <param name="speedFactor" type="double" value="1"/>
+        <param name="graphUpdateFrequency" type="double" value="1.0"/>
+
+
+        <!-- <remap from="/aft_mapped_to_init" to="/aloam_velodyne/Odometry"/> -->
+        <!-- <remap from="/velodyne_cloud_registered_local" to="/aloam_velodyne/cloud_registered_body"/> -->
+    
+        <remap from="/aft_mapped_to_init" to="/Odometry"/>
+        <remap from="/velodyne_cloud_registered_local" to="/cloud_registered_body"/>
+        <node pkg="aloam_velodyne" type="alaserPGO" name="alaserPGO" output="screen" required="true"/> 
+
+        <!-- RViz node for the second package -->
+        <!-- <group if="$(arg rviz)">
+            <node launch-prefix="nice" pkg="rviz" type="rviz" name="pgo_rviz" args="-d $(find aloam_velodyne)/rviz_cfg/aloam_velodyne.rviz" />
+        </group> -->
+    </group>
+</launch>

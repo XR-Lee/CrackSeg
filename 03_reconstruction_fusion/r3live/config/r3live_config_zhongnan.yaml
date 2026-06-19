@@ -1,0 +1,93 @@
+Lidar_front_end:
+   lidar_type: 4   # 1 for Livox-avia, 3 for Ouster-OS1-64, 4 for Hesai32-M2X
+   N_SCANS: 32
+   using_raw_point: 1
+   point_step: 1
+   # lidar_imu_rotm: 
+   #    [-1.0000000,  0.0000000,  0.0000000,
+   #       -0.0000000, -1.0000000,  0.0000000,
+   #       0.0000000,  0.0000000,  1.0000000]
+   lidar_imu_rotm:
+      [-0.99993283,  0.00906085, -0.00720715, 
+      -0.0092566 , -0.99957592,  0.02760647,
+      -0.00695394,  0.02767132,  0.99959334]
+      
+#     T_imu_lidar
+# array([[-0.99993283,  0.00906085, -0.00720715, -0.06433602],
+#        [-0.0092566 , -0.99957592,  0.02760647,  0.04798613],
+#        [-0.00695394,  0.02767132,  0.99959334,  0.10092374],
+#        [ 0.        ,  0.        ,  0.        , -1.        ]])
+
+      # LiDAR is mounted rotated by 90 deg
+      #[1, 0, 0,
+      # 0, 0, 1,
+      # 0, -1, 0]
+   min_dist: 1.0
+   max_dist: 10.0
+
+r3live_common:
+   if_dump_log: 0                   # If recording ESIKF update log. [default = 0]
+   record_offline_map: 1            # If recording offline map. [default = 1]
+   pub_pt_minimum_views: 5          # Publish points which have been render up to "pub_pt_minimum_views" time. [default = 3]
+   minimum_pts_size: 0.0001           # The minimum distance for every two points in Global map (unit in meter). [default = 0.01] 
+   track_windows_size: 30          
+   image_downsample_ratio: 1        # The downsample ratio of the input image. [default = 1]
+   estimate_i2c_extrinsic: 1        # If enable estimate the extrinsic between camera and IMU. [default = 1] 
+   estimate_intrinsic: 1            # If enable estimate the online intrinsic calibration of the camera lens. [default = 1] 
+   maximum_vio_tracked_pts: 6000     # The maximum points for tracking. [default = 600]
+   append_global_map_point_step: 1  # The point step of append point to global map. [default = 4]
+
+r3live_vio:
+   image_width: 4096
+   image_height: 3000
+
+   # # Old pinhole-equi model
+   # camera_intrinsic:
+   #    [4819.642849653861, 0.0, 2044.910128578987,
+   #    0.0,   4819.612292085981, 1535.2966202905343,
+   #    0.0, 0.0, 1.0 ] 
+   # camera_dist_coeffs: [0.3253005942710306, 0.3535881463790802, 0, 0, -0.7936536302210133]  #k1, k2, p1, p2, k3
+
+   # # Origin extrinsic value.  T_cam_imu .
+   # camera_ext_R:
+   #    [0.999931  ,  0.00561199,  0.0103344 ,      
+   #       -0.0103239 , -0.00189784,  0.999945,  
+   #       0.0056313 , -0.999982  , -0.00183977]
+   # camera_ext_t: [-0.0717716,0.0493429,-0.0677501] 
+
+   # ==============================================
+
+   # Pinhole-Radtan model : 20240131
+   camera_intrinsic:
+      [4818.200388954926, 0.0, 2032.4178620390019,
+      0.0,   4819.10345841615, 1535.1895959282901,
+      0.0, 0.0, 1.0 ] 
+   camera_dist_coeffs: [0.003043514741045163, 0.06634739187544138, -0.000217681797407554, -0.0006654964142658197, 0]  #k1, k2, p1, p2, k3
+
+   camera_ext_R:
+      [0.99991681,  0.01289765, -0.00013425,      
+         0.00051595, -0.02959567,  0.99956182,  
+        0.01288802, -0.99947874, -0.02959986]
+   camera_ext_t: [-0.1406737, 0.09498353, 0.03219833] 
+
+   # Rough extrinsic value, form CAD model, is not correct enough, but can be online calibrated in our datasets.
+   # camera_ext_R:
+   #    [0, 0, 1,
+   #     -1, 0, 0,
+   #     0, -1, 0]
+   # camera_ext_t: [0,0,0] 
+   
+r3live_lio:        
+   lio_update_point_step: 2   # Point step used for LIO update.  
+   max_iteration: 1000           # Maximum times of LIO esikf.
+   lidar_time_delay: 0        # The time-offset between LiDAR and IMU, provided by user. 
+   filter_size_corner: 0.05   
+   filter_size_surf: 0.05
+   filter_size_surf_z: 0.05
+   filter_size_map: 0.05
+   voxel_downsample_size_surf: 0.05
+   # maximum_res_dis: 0.1
+   planar_check_dis: 0.01 #0.02
+
+   maximum_pt_kdtree_dis: 0.3 # default 0.5
+   maximum_res_dis: 0.02 # default 0.1
