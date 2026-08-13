@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Crack tracking">
+  <rect width="64" height="64" rx="7" fill="#202421"/>
+  <path d="M35 6 29 20l7 7-10 9 5 7-8 15" fill="none" stroke="#e7e9e6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m31 43 11 4 8-7" fill="none" stroke="#edc319" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="31" cy="43" r="3" fill="#4f9f35"/>
+</svg>

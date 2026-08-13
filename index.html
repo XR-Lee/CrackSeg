@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="A geometry-assisted, morphology-aware framework for tracking concrete crack identities and newly developed growth across viewpoints and time.">
+  <meta name="keywords"
+        content="crack propagation monitoring, crack-instance tracking, concrete infrastructure, structural health monitoring, multi-view geometry, crack growth">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Cross-View and Cross-Time Tracking of Crack Evolution in Concrete</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&amp;display=swap"
+        rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Project navigation">
+    <div class="container is-max-desktop nav-inner">
+      <a class="site-brand" href="#top" aria-label="Crack Tracking home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Crack Tracking</span>
+      </a>
+      <div class="nav-links">
+        <a href="#method">Method</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#results">Results</a>
+        <a href="#limitations">Limitations</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="publication-header" id="top">
+    <div class="container is-max-desktop">
+      <p class="project-mark">Research project <span aria-hidden="true">/</span> Manuscript in preparation</p>
+      <h1 class="title publication-title">Cross-View and Cross-Time Tracking of Crack Evolution in Concrete</h1>
+      <p class="publication-summary">
+        Geometry-assisted registration and morphology-aware instance tracking for monitoring how concrete cracks
+        persist, branch, and grow under changing camera viewpoints.
+      </p>
+
+      <div class="publication-authors" aria-label="Author status">
+        <span class="author-block">Author information pending final manuscript metadata</span>
+      </div>
+      <div class="publication-affiliations" aria-label="Confirmed affiliation">
+        <span>School of Civil Engineering, Central South University, Changsha, China</span>
+      </div>
+
+      <nav class="publication-links" aria-label="Project links">
+        <a href="#abstract" class="button publication-button">
+          <span>Overview</span>
+        </a>
+        <a href="#method" class="button publication-button">
+          <span>Method</span>
+        </a>
+        <a href="#results" class="button publication-button is-secondary">
+          <span>Results</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="paper-figure teaser-section" aria-labelledby="overview-title">
+      <div class="container is-max-desktop">
+        <div class="section-heading compact-heading">
+          <p class="eyebrow">Cross-view monitoring</p>
+          <h2 class="title is-3" id="overview-title">One physical crack, many views and stages</h2>
+        </div>
+        <figure class="hero-figure">
+          <img src="./static/images/crack-tracking/geometry-estimation.webp"
+               width="2000" height="771" fetchpriority="high" decoding="async"
+               alt="Multi-view crack images aligned through geometric structure estimation into reconstructed concrete surfaces with relative camera poses.">
+          <figcaption>
+            Dense scene geometry and relative camera poses map observations acquired from different viewpoints into a
+            shared structural reference. This geometric alignment is the basis for identity association and growth separation.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section abstract-section" id="abstract" aria-labelledby="abstract-title">
+      <div class="container is-max-desktop reading-width">
+        <p class="eyebrow">Abstract</p>
+        <h2 class="title is-3" id="abstract-title">From detecting cracks to following their evolution</h2>
+        <div class="content abstract-copy">
+          <p>
+            Whether a crack is actively growing, not merely whether it exists, determines how urgently a concrete
+            structure must be assessed and how frequently it should be inspected. Yet cameras cannot always remain at
+            fixed viewpoints while cracks initiate, extend, branch, and interact over time. Visual monitoring therefore
+            becomes a coupled cross-view and cross-time problem: the same physical crack must retain its identity under
+            changing viewpoints, and newly appeared growth must be separated from inherited crack segments in a unified view.
+          </p>
+          <p>
+            This study formulates the task as cross-view and cross-time crack-instance tracking. The proposed framework
+            combines image-based geometric registration, morphology-aware crack instantiation, chronological identity
+            propagation, and skeleton-based growth measurement. Evaluation on staged laboratory loading shows that the
+            framework can establish loose cross-view identity correspondence, while strict spatial overlap and early
+            micro-crack localization remain constrained by segmentation quality and projection drift.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contribution-section" aria-labelledby="contribution-title">
+      <div class="container is-max-desktop">
+        <div class="section-heading">
+          <p class="eyebrow">Contributions</p>
+          <h2 class="title is-3" id="contribution-title">A complete crack-level monitoring task</h2>
+          <p>
+            The work connects geometric correspondence, physically meaningful crack instances, temporal identity, and
+            growth quantification within one evaluation framework.
+          </p>
+        </div>
+        <div class="contribution-grid">
+          <article class="contribution-item">
+            <span class="method-index">01</span>
+            <h3>Problem formulation</h3>
+            <p>Defines crack monitoring as coupled identity association and growth localization across views and time.</p>
+          </article>
+          <article class="contribution-item">
+            <span class="method-index">02</span>
+            <h3>Integrated framework</h3>
+            <p>Combines geometry-assisted registration with morphology-aware instantiation and temporal ID propagation.</p>
+          </article>
+          <article class="contribution-item">
+            <span class="method-index">03</span>
+            <h3>Dedicated protocol</h3>
+            <p>Evaluates identity consistency, immediate and delayed growth localization, and propagated-length error.</p>
+          </article>
+          <article class="contribution-item">
+            <span class="method-index">04</span>
+            <h3>Temporal dataset</h3>
+            <p>Provides staged beam observations with pixel masks and scene-local crack identities across loading stages.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section method-section" id="method" aria-labelledby="method-title">
+      <div class="container is-max-desktop">
+        <div class="section-heading">
+          <p class="eyebrow">Method</p>
+          <h2 class="title is-3" id="method-title">Register, instantiate, associate, measure</h2>
+          <p>
+            The system converts a sequence of viewpoint-varying crack masks into persistent physical crack identities
+            and separates inherited support from newly developed extension.
+          </p>
+        </div>
+
+        <figure class="method-figure scroll-figure" tabindex="0"
+                aria-label="Overall crack tracking workflow, horizontally scrollable on small screens">
+          <img src="./static/images/crack-tracking/workflow.webp"
+               width="1969" height="393" loading="lazy" decoding="async"
+               alt="Four-stage workflow: geometric structure estimation, crack segmentation, crack instance identification, and crack numbering with extension tracking.">
+          <figcaption>
+            Overall workflow. A modular segmentation front end supplies crack masks; the main pipeline resolves their
+            geometry, physical grouping, temporal identity, and newly appeared growth.
+          </figcaption>
+        </figure>
+
+        <div class="method-grid">
+          <article class="method-item">
+            <span class="method-index">01</span>
+            <h3>Geometric registration</h3>
+            <p>MASt3R supplies dense descriptors, 3D point maps, camera poses, and confidence for mapping views into a common reference.</p>
+          </article>
+          <article class="method-item">
+            <span class="method-index">02</span>
+            <h3>Crack segmentation</h3>
+            <p>A DeepLabv3+-based predicted-mask front end extracts narrow crack support while the downstream tracking method remains modular.</p>
+          </article>
+          <article class="method-item">
+            <span class="method-index">03</span>
+            <h3>Morphology-aware instances</h3>
+            <p>Direction, endpoint gap, normal offset, and branch angle reconnect same-root fragments without merging independent cracks.</p>
+          </article>
+          <article class="method-item">
+            <span class="method-index">04</span>
+            <h3>Temporal growth tracking</h3>
+            <p>Projected overlap and topology-aware fallbacks propagate IDs; skeleton support separates matched crack from new extension.</p>
+          </article>
+        </div>
+
+        <figure class="pipeline-figure scroll-figure" tabindex="0"
+                aria-label="Detailed registration and crack growth tracking pipeline, horizontally scrollable on small screens">
+          <img src="./static/images/crack-tracking/tracking-pipeline.webp"
+               width="3600" height="1545" loading="lazy" decoding="async"
+               alt="Detailed pipeline showing temporal images, reprojection, morphological overlap, crack identity numbering, unified-view registration, and final growth monitoring.">
+          <figcaption>
+            Detailed tracking pipeline. Green denotes inherited crack support in the final monitoring result; yellow marks
+            newly appeared growth after cross-view registration and identity matching.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section dataset-section" id="dataset" aria-labelledby="dataset-title">
+      <div class="container is-max-desktop">
+        <div class="section-heading">
+          <p class="eyebrow">Dataset</p>
+          <h2 class="title is-3" id="dataset-title">Staged loading with temporal crack identities</h2>
+          <p>
+            The evaluation set spans Mode I opening, mixed Mode I-II branching, and Mode II shear behavior across three
+            concrete specimen families.
+          </p>
+        </div>
+
+        <div class="metric-grid dataset-metrics" aria-label="Dataset summary">
+          <article class="metric-card">
+            <strong>8</strong>
+            <span>laboratory scenes</span>
+          </article>
+          <article class="metric-card">
+            <strong>61</strong>
+            <span>stage images across time</span>
+          </article>
+          <article class="metric-card">
+            <strong>26</strong>
+            <span>scene-local crack identities</span>
+          </article>
+        </div>
+
+        <div class="dataset-visuals">
+          <figure class="dataset-figure">
+            <p class="figure-kicker">Temporal acquisition</p>
+            <h3>Cracks emerge between loading stages</h3>
+            <div class="image-frame">
+              <img src="./static/images/crack-tracking/staged-sequence.webp"
+                   width="1428" height="296" loading="lazy" decoding="async"
+                   alt="Six staged images of a pre-notched concrete beam showing crack growth over time.">
+            </div>
+            <figcaption>Example sequence from a pre-notched beam under staged loading.</figcaption>
+          </figure>
+          <figure class="dataset-figure">
+            <p class="figure-kicker">Annotation</p>
+            <h3>Binary support becomes identifiable crack instances</h3>
+            <div class="image-frame">
+              <img src="./static/images/crack-tracking/annotation-example.webp"
+                   width="2600" height="580" loading="lazy" decoding="async"
+                   alt="Original concrete image, binary crack mask, and color-coded crack instance mask.">
+            </div>
+            <figcaption>Original image, pixel-level mask, and scene-local instance annotation.</figcaption>
+          </figure>
+        </div>
+
+        <div class="table-wrap" tabindex="0" aria-label="Dataset composition, horizontally scrollable">
+          <table class="table dataset-table is-fullwidth">
+            <caption>Dataset composition by structural specimen and dominant crack behavior.</caption>
+            <thead>
+              <tr>
+                <th>Specimen family</th>
+                <th>Scenes</th>
+                <th>Observed behavior</th>
+                <th>Tracking challenge</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Pre-notched beams</td>
+                <td>2</td>
+                <td>Mode I opening</td>
+                <td>Early micro-crack emergence and long extension</td>
+              </tr>
+              <tr>
+                <td>L-shaped beams</td>
+                <td>3</td>
+                <td>Mixed Mode I-II branching</td>
+                <td>Turning, branching, and topology change</td>
+              </tr>
+              <tr>
+                <td>Deep beams</td>
+                <td>3</td>
+                <td>Mode II shear</td>
+                <td>Multiple nearby cracks and identity ambiguity</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section results-section" id="results" aria-labelledby="results-title">
+      <div class="container is-max-desktop">
+        <div class="section-heading">
+          <p class="eyebrow">Results</p>
+          <h2 class="title is-3" id="results-title">Most missed micro-cracks are recovered within two intervals</h2>
+          <p>
+            The framework produces useful loose identity correspondence and temporal growth localization, but strict
+            overlap remains a harder problem under viewpoint change.
+          </p>
+        </div>
+
+        <div class="metric-grid" aria-label="Key results">
+          <article class="metric-card emphasis-card">
+            <strong>0.701</strong>
+            <span>immediate growth F1 at the next observed stage</span>
+          </article>
+          <article class="metric-card emphasis-card">
+            <strong>0.831</strong>
+            <span>lag-tolerant growth F1 within two intervals</span>
+          </article>
+          <article class="metric-card emphasis-card">
+            <strong>0.647</strong>
+            <span>scene-average crack length change error</span>
+          </article>
+        </div>
+
+        <div class="result-analysis-grid">
+          <figure class="analysis-figure">
+            <p class="figure-kicker">Identity consistency</p>
+            <h3>Loose matches are stronger than strict overlap</h3>
+            <div class="image-frame chart-frame">
+              <img src="./static/images/crack-tracking/hota-analysis.webp"
+                   width="2000" height="987" loading="lazy" decoding="async"
+                   alt="HOTA, detection accuracy, association accuracy, and localization accuracy curves across eight scenes and overlap thresholds.">
+            </div>
+            <figcaption>
+              HOTA-family curves across eight scenes. Performance varies substantially by scene, especially as the
+              overlap threshold becomes stricter.
+            </figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <p class="figure-kicker">Delayed localization</p>
+            <h3>Nascent cracks become detectable as they widen</h3>
+            <div class="image-frame chart-frame">
+              <img src="./static/images/crack-tracking/lag-analysis.webp"
+                   width="1600" height="1033" loading="lazy" decoding="async"
+                   alt="Growth localization F1 increases from immediate evaluation through one, two, and three interval lag allowances.">
+            </div>
+            <figcaption>
+              Growth F1 rises from 0.701 immediately to 0.763, 0.831, and 0.839 with one, two, and three allowed intervals;
+              Delay@2 is 0.225 intervals.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="results-table-grid">
+          <div class="table-wrap" tabindex="0" aria-label="Instantiation ablation, horizontally scrollable">
+            <table class="table results-table is-fullwidth">
+              <caption>Morphology-aware instantiation is essential for loose identity matching.</caption>
+              <thead>
+                <tr><th>Instantiation</th><th>HOTA(0)</th><th>Immediate F1</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Connected components</td><td>0.134</td><td>-</td></tr>
+                <tr><td>Skeleton branches</td><td>0.143</td><td>-</td></tr>
+                <tr class="ours"><td>Full morphology-aware method</td><td><strong>0.668</strong></td><td><strong>0.701</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-wrap" tabindex="0" aria-label="Geometry refinement ablation, horizontally scrollable">
+            <table class="table results-table is-fullwidth">
+              <caption>Adjacent-pair geometry improves growth localization and length estimation.</caption>
+              <thead>
+                <tr><th>Geometry strategy</th><th>F1</th><th>CLCE</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Scene-level geometry only</td><td>0.528</td><td>1.506</td></tr>
+                <tr class="ours"><td>Adjacent-pair refinement</td><td><strong>0.701</strong></td><td><strong>0.739</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section qualitative-section" aria-labelledby="qualitative-title">
+      <div class="container is-max-desktop">
+        <div class="section-heading">
+          <p class="eyebrow">Qualitative tracking</p>
+          <h2 class="title is-3" id="qualitative-title">Identity and growth across three failure patterns</h2>
+          <p>
+            Each sequence projects consecutive observations into a unified view. Green traces inherited support and
+            yellow traces newly localized growth.
+          </p>
+        </div>
+
+        <div class="case-gallery">
+          <figure class="case-study">
+            <div class="case-copy">
+              <span class="case-number">01</span>
+              <p class="figure-kicker">Pre-notched beam</p>
+              <h3>Long Mode I extension</h3>
+              <p>Tracks a dominant crack as it lengthens upward through successive load stages.</p>
+            </div>
+            <div class="case-image">
+              <img src="./static/images/crack-tracking/pre-notched-results.webp"
+                   width="1104" height="1540" loading="lazy" decoding="async"
+                   alt="Pre-notched beam sequence with pairwise projections, unified-view registration, and green-yellow crack growth monitoring results.">
+            </div>
+          </figure>
+
+          <figure class="case-study">
+            <div class="case-copy">
+              <span class="case-number">02</span>
+              <p class="figure-kicker">L-shaped beam</p>
+              <h3>Mixed-mode turning and branching</h3>
+              <p>Maintains the crack history as the path changes direction and develops a new branch.</p>
+            </div>
+            <div class="case-image">
+              <img src="./static/images/crack-tracking/l-shaped-results.webp"
+                   width="1597" height="1702" loading="lazy" decoding="async"
+                   alt="L-shaped beam sequence showing crack registration and new yellow branch growth across changing viewpoints.">
+            </div>
+          </figure>
+
+          <figure class="case-study">
+            <div class="case-copy">
+              <span class="case-number">03</span>
+              <p class="figure-kicker">Deep beam</p>
+              <h3>Multiple shear cracks</h3>
+              <p>Associates several nearby crack instances where projection drift and identity ambiguity are strongest.</p>
+            </div>
+            <div class="case-image">
+              <img src="./static/images/crack-tracking/deep-beam-results.webp"
+                   width="1578" height="2232" loading="lazy" decoding="async"
+                   alt="Deep beam sequence with multiple shear crack instances tracked and separated into inherited and newly developed segments.">
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ablation-section" aria-labelledby="ablation-title">
+      <div class="container is-max-desktop">
+        <div class="section-heading">
+          <p class="eyebrow">Additional analysis</p>
+          <h2 class="title is-3" id="ablation-title">Geometry backends and growth tolerance</h2>
+          <p>
+            The downstream tracking formulation is modular: it can use different dense matching front ends and remains
+            stable across a practical range of growth-support radii.
+          </p>
+        </div>
+        <div class="result-analysis-grid">
+          <figure class="analysis-figure">
+            <p class="figure-kicker">Matcher ablation</p>
+            <h3>MASt3R and ASpanFormer are closely matched</h3>
+            <div class="image-frame chart-frame">
+              <img src="./static/images/crack-tracking/matcher-ablation.webp"
+                   width="1800" height="1116" loading="lazy" decoding="async"
+                   alt="Comparison of MASt3R and ASpanFormer on growth F1, crack length change error, and valid projection ratio.">
+            </div>
+            <figcaption>
+              On the common subset, ASpanFormer reaches F1 0.708 while MASt3R gives the lower CLCE, 0.739, and a valid
+              projection ratio of 0.784.
+            </figcaption>
+          </figure>
+          <figure class="analysis-figure">
+            <p class="figure-kicker">Tolerance sensitivity</p>
+            <h3>Performance is stable around the selected radii</h3>
+            <div class="image-frame chart-frame">
+              <img src="./static/images/crack-tracking/radius-sensitivity.webp"
+                   width="1240" height="980" loading="lazy" decoding="async"
+                   alt="Heatmap showing growth F1 sensitivity to inherited-support and growth-support radius values.">
+            </div>
+            <figcaption>
+              Growth localization remains stable around 14-16 pixels; the reported configuration uses 16 pixels for
+              both inherited-support and growth-support tolerances.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section limitations-section" id="limitations" aria-labelledby="limitations-title">
+      <div class="container is-max-desktop limitations-layout">
+        <div>
+          <p class="eyebrow">Limitations</p>
+          <h2 class="title is-3" id="limitations-title">Loose correspondence is not yet strict spatial tracking</h2>
+        </div>
+        <div class="limitation-list">
+          <article>
+            <h3>Early micro-cracks</h3>
+            <p>Cracks only one to three pixels wide can be weakly segmented, fragmenting topology and delaying growth localization.</p>
+          </article>
+          <article>
+            <h3>Projection drift</h3>
+            <p>Texture-poor surfaces, occlusion, and large viewpoint changes reduce strict overlap even when physical identity is preserved.</p>
+          </article>
+          <article>
+            <h3>Laboratory scope</h3>
+            <p>The current evidence comes from staged beam loading; deployment on bridges, tunnels, UAVs, and inspection robots remains future work.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section project-note-section" aria-labelledby="project-note-title">
+      <div class="container is-max-desktop project-note">
+        <div>
+          <h2 id="project-note-title">Project status</h2>
+          <p>
+            The supplied manuscript is still being finalized: author metadata, citation details, and the public release
+            status of the linked code and dataset repository are pending. This page therefore reports only confirmed
+            method, dataset, and experimental information from the manuscript.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container is-max-desktop footer-content">
+      <p>Cross-View and Cross-Time Tracking of Crack Evolution in Concrete.</p>
+      <p>
+        Website adapted from the
+        <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noopener noreferrer">Nerfies</a>
+        academic project template and shared under CC BY-SA 4.0.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
