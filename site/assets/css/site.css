@@ -348,6 +348,15 @@ sup {
   text-align: center;
 }
 
+.workflow-figure {
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.figure-scroll-workflow img {
+  min-width: 760px;
+}
+
 .method-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
