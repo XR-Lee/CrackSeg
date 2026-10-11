@@ -1,5 +1,5 @@
 // Empty resource links stay inert; adding an href activates them automatically.
-document.querySelectorAll('.resource-actions a').forEach(link => {
+document.querySelectorAll('a[href=""]').forEach(link => {
   link.addEventListener('click', event => {
     if (!link.getAttribute('href')?.trim()) event.preventDefault();
   });
