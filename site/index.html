@@ -1,495 +1,133 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="CrackSeg combines crack-aware SAM refinement, visual-inertial-LiDAR fusion, and automated 3D crack-width measurement for field inspection."
-    />
-    <meta name="theme-color" content="#f7f5f1" />
-    <meta name="color-scheme" content="light" />
-    <link rel="canonical" href="https://xr-lee.github.io/CrackSeg/" />
-    <link rel="stylesheet" href="./assets/css/site.css" />
-
-    <meta property="og:type" content="article" />
-    <meta property="og:site_name" content="CrackSeg" />
-    <meta
-      property="og:title"
-      content="CrackSeg — 3D Modeling and Automated Measurement of Concrete Cracks"
-    />
-    <meta
-      property="og:description"
-      content="From field RGB, LiDAR, and IMU captures to semantically enriched 3D crack models and automated width measurements."
-    />
-    <meta property="og:url" content="https://xr-lee.github.io/CrackSeg/" />
-    <meta
-      property="og:image"
-      content="https://xr-lee.github.io/CrackSeg/assets/images/segmentation-demo.png"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <title>CrackSeg — 3D Concrete Crack Modeling and Measurement</title>
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ScholarlyArticle",
-        "headline": "3D Modeling and Automated Measurement of Concrete Cracks via Segment Anything Refinement and Visual Inertial LiDAR Fusion",
-        "author": [
-          { "@type": "Person", "name": "Pengru Deng" },
-          { "@type": "Person", "name": "Jiapeng Yao" },
-          { "@type": "Person", "name": "Chun Li" },
-          { "@type": "Person", "name": "Su Wang" },
-          { "@type": "Person", "name": "Xinrun Li" },
-          { "@type": "Person", "name": "Varun Ojha" },
-          { "@type": "Person", "name": "Xuhui He" }
-        ],
-        "datePublished": "2026",
-        "identifier": [
-          "arXiv:2501.09203",
-          "https://doi.org/10.1016/j.cacaie.2026.100019"
-        ],
-        "isPartOf": {
-          "@type": "Periodical",
-          "name": "Computer-Aided Civil and Infrastructure Engineering"
-        },
-        "url": "https://xr-lee.github.io/CrackSeg/"
-      }
-    </script>
-  </head>
-
-  <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
-
-    <header class="hero">
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="container hero-inner">
-        <p class="eyebrow">CRACKSEG <span>/</span> ARXIV:2501.09203</p>
-        <h1>3D Modeling and Automated Measurement of Concrete Cracks</h1>
-        <p class="hero-subtitle">
-          Segment Anything refinement and visual–inertial–LiDAR fusion for
-          field-ready crack inspection at real-world scale.
-        </p>
-
-        <div class="authors" aria-label="Authors">
-          <a href="mailto:pengrudeng@csu.edu.cn">Pengru Deng<sup>1,2,*</sup></a>
-          <span>Jiapeng Yao<sup>1</sup></span>
-          <span>Chun Li<sup>3</sup></span>
-          <span>Su Wang<sup>4</sup></span>
-          <a href="mailto:xinrun.li@ncl.ac.uk">Xinrun Li<sup>5,*</sup></a>
-          <span>Varun Ojha<sup>5</sup></span>
-          <span>Xuhui He<sup>1,2</sup></span>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Two studies on concrete crack inspection and monitoring: metric 3D crack measurement and cross-view, cross-time tracking.">
+  <title>Concrete Crack Inspection and Monitoring | CrackSeg &amp; Crack Evolution</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/combined.css">
+</head>
+<body class="combined-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="hero" id="top">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <h1>Concrete Crack Inspection and Monitoring</h1>
+      <p class="hero-subtitle">Two complementary studies on concrete cracks: detect cracks and measure their width in 3D, and track how individual cracks grow across changing viewpoints.</p>
+      <nav class="paper-links" aria-label="Research studies">
+        <a class="button button-dark" href="#measurement">Detection &amp; 3D measurement</a>
+        <a class="button button-outline" href="#tracking">Crack tracking</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="section section-soft overview-band" aria-labelledby="overview-title">
+      <div class="container">
+        <h2 id="overview-title">From measuring cracks to monitoring change</h2>
+        <div class="study-previews">
+          <figure class="study-preview">
+            <h3><a href="#measurement">Where is the crack, and how wide is it?</a></h3>
+            <a class="preview-art measurement-art" href="measurement.html#overview-title">
+              <img src="assets/images/pipeline-overview.png" width="1178" height="519" alt="CrackSeg workflow from crack segmentation to semantic 3D reconstruction and width measurement.">
+            </a>
+            <figcaption>CrackSeg maps image detections to a point cloud with real-world scale.</figcaption>
+          </figure>
+          <figure class="study-preview">
+            <h3><a href="#tracking">Is it the same crack, and what grew?</a></h3>
+            <a class="preview-art tracking-art" href="crack-evolution/index.html#case-multiple">
+              <img src="crack-evolution/assets/figure-09-deep-beam-growth-I4.webp" width="1201" height="816" alt="Deep-beam shear cracks at an earlier observation.">
+              <img src="crack-evolution/assets/figure-09-deep-beam-growth-I8.webp" width="1201" height="806" alt="Tracked deep-beam shear cracks at a later observation.">
+            </a>
+            <figcaption>Green marks inherited crack segments. Yellow marks growth since the preceding observation.</figcaption>
+          </figure>
         </div>
-
-        <div class="affiliations" aria-label="Affiliations">
-          <span><sup>1</sup>School of Civil Engineering, Central South University</span>
-          <span><sup>2</sup>Hunan Provincial Key Laboratory for Disaster Prevention and Mitigation of Rail Transit Engineering Structures</span>
-          <span><sup>3</sup>Carizon, Shanghai</span>
-          <span><sup>4</sup>Nvidia, Shanghai</span>
-          <span><sup>5</sup>School of Computing, Newcastle University</span>
-        </div>
-        <p class="correspondence">
-          <sup>*</sup>Corresponding authors · Computer-Aided Civil and
-          Infrastructure Engineering, 2026
-        </p>
-
-        <nav class="paper-links" aria-label="Paper links">
-          <a
-            class="button button-dark"
-            href="https://arxiv.org/abs/2501.09203"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span aria-hidden="true">↗</span> arXiv
-            <span class="sr-only"> (opens in a new tab)</span>
-          </a>
-          <a
-            class="button button-dark"
-            href="https://www.sciencedirect.com/science/article/pii/S1093968726025995"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span aria-hidden="true">▤</span> Paper
-            <span class="sr-only"> (opens in a new tab)</span>
-          </a>
-          <a
-            class="button button-outline"
-            href="https://doi.org/10.1016/j.cacaie.2026.100019"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span aria-hidden="true">↗</span> DOI
-            <span class="sr-only"> (opens in a new tab)</span>
-          </a>
-          <a
-            class="button button-outline"
-            href="https://github.com/XR-Lee/CrackSeg"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span aria-hidden="true">⌘</span> Code
-            <span class="sr-only"> (opens in a new tab)</span>
-          </a>
-          <a class="button button-outline" href="#bibtex">
-            <span aria-hidden="true">“</span> BibTeX
-          </a>
-        </nav>
+        <p class="study-connection">The tracking study reuses CrackSeg’s DeepLabv3+ segmentation checkpoint. Each study evaluates its own method and outcomes.</p>
       </div>
-    </header>
+    </section>
 
-    <main id="main-content">
-      <section class="teaser section-soft" aria-labelledby="overview-title">
-        <div class="container-wide">
-          <p class="section-kicker">WHY A 3D CRACK MODEL?</p>
-          <h2 id="overview-title" class="sr-only">CrackSeg overview</h2>
-          <figure class="figure-card figure-card-plain">
-            <div
-              class="figure-scroll"
-              tabindex="0"
-              aria-label="CrackSeg pipeline overview, horizontally scrollable on small screens"
-            >
-              <img
-                src="./assets/images/pipeline-overview.svg"
-                alt="CrackSeg pipeline from structural imagery through segmentation, LiDAR reconstruction, multimodal fusion, and automatic measurement."
-                width="1178"
-                height="519"
-                decoding="async"
-              />
-            </div>
-            <figcaption>
-              CrackSeg joins semantic crack cues with metric 3D geometry. The result
-              is a dense point-cloud model that retains crack location and supports
-              automatic width measurement without manual scale recovery.
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="section abstract-section" aria-labelledby="abstract-title">
-        <div class="container-reading">
-          <p class="section-kicker">PAPER SUMMARY</p>
-          <h2 id="abstract-title">Abstract</h2>
-          <p class="abstract-copy">
-            AI-based crack inspection often loses accuracy in unfamiliar scenes and
-            usually separates image-based crack detection from spatial measurement.
-            CrackSeg addresses both limitations in one pipeline. A crack-aware prompt
-            generator turns coarse DeepLabV3+ masks into reliable SAM prompts, while
-            quality assessment rejects implausible refinements. Multi-frame RGB,
-            LiDAR, and inertial data are then fused into a dense, real-scale semantic
-            point cloud. Crack width and 3D location are extracted directly from this
-            representation, enabling automated inspection on complex and non-planar
-            concrete surfaces.
-          </p>
-        </div>
-      </section>
-
-      <section class="section method-section" aria-labelledby="method-title">
-        <div class="container-wide">
-          <p class="section-kicker">APPROACH</p>
-          <h2 id="method-title">From pixels to metric crack geometry</h2>
-          <p class="section-lead">
-            The method is organized as a reproducible five-stage implementation,
-            summarized here as three scientific components.
-          </p>
-
-          <div class="method-grid">
-            <article class="method-card">
-              <span class="method-index">01</span>
-              <h3>Crack-aware SAM refinement</h3>
-              <p>
-                A task-specific model provides coarse crack cues. Skeleton-derived
-                point prompts guide SAM, and geometry-aware quality checks prevent
-                over-wide or topologically implausible masks.
-              </p>
-            </article>
-            <article class="method-card">
-              <span class="method-index">02</span>
-              <h3>Visual–inertial–LiDAR fusion</h3>
-              <p>
-                FastLIO2 reconstructs the structure at real-world scale. Calibrated
-                camera poses project multi-frame RGB masks into the LiDAR geometry to
-                build a colorized, crack-aware point cloud.
-              </p>
-            </article>
-            <article class="method-card">
-              <span class="method-index">03</span>
-              <h3>Automated 3D measurement</h3>
-              <p>
-                Local surface normals, crack skeletons, and paired edge points yield
-                width and spatial coordinates directly in 3D—without assuming a
-                planar inspected surface or requiring manual point-cloud measurement.
-              </p>
-            </article>
+    <section class="section study-section" id="measurement" aria-labelledby="measurement-title">
+      <div class="container">
+        <header class="study-header">
+          <p class="section-kicker">CrackSeg · Detection and 3D measurement</p>
+          <h2 id="measurement-title">3D Modeling and Automated Measurement of Concrete Cracks via Segment Anything Refinement and Visual Inertial LiDAR Fusion</h2>
+          <div aria-label="Authors" class="authors">
+<a href="mailto:pengrudeng@csu.edu.cn">Pengru Deng<sup>1,2,*</sup></a>
+<span>Jiapeng Yao<sup>1</sup></span>
+<span>Chun Li<sup>3</sup></span>
+<span>Su Wang<sup>4</sup></span>
+<a href="mailto:xinrun.li@ncl.ac.uk">Xinrun Li<sup>5,*</sup></a>
+<span>Varun Ojha<sup>5</sup></span>
+<span>Xuhui He<sup>1,2</sup></span>
+</div>
+          <div aria-label="Affiliations" class="affiliations">
+<span><sup>1</sup>School of Civil Engineering, Central South University</span>
+<span><sup>2</sup>Hunan Provincial Key Laboratory for Disaster Prevention and Mitigation of Rail Transit Engineering Structures</span>
+<span><sup>3</sup>Carizon, Shanghai</span>
+<span><sup>4</sup>Nvidia, Shanghai</span>
+<span><sup>5</sup>School of Computing, Newcastle University</span>
+</div>
+          <p class="study-venue"><sup>*</sup> Corresponding authors · <cite>Computer-Aided Civil and Infrastructure Engineering</cite>, 2026</p>
+          <div class="paper-links" role="group" aria-label="CrackSeg resources">
+            <a class="button button-dark" href="https://www.sciencedirect.com/science/article/pii/S1093968726025995">Paper <span aria-hidden="true">↗</span></a>
+            <a class="button button-outline" href="https://arxiv.org/abs/2501.09203">arXiv</a>
+            <a class="button button-outline" href="https://doi.org/10.1016/j.cacaie.2026.100019">DOI</a>
+            <a class="button button-outline" href="https://github.com/XR-Lee/CrackSeg">Code</a>
+            <a class="button button-outline" href="#cite-crackseg">BibTeX</a>
           </div>
-
-          <div class="figure-pair">
-            <figure class="figure-card">
-              <p class="figure-label">SEGMENTATION</p>
-              <h3>Automatic prompts with a safety check</h3>
-              <div
-                class="figure-scroll figure-scroll-tall"
-                tabindex="0"
-                aria-label="SAM refinement workflow, horizontally scrollable on small screens"
-              >
-                <img
-                  src="./assets/images/sam-refinement.png"
-                  alt="Workflow showing crack-aware prompt generation, SAM inference, and segmentation quality assessment."
-                  width="1071"
-                  height="968"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <figcaption>
-                Coarse masks are converted into spatially meaningful point prompts;
-                unreliable SAM regions fall back to the baseline prediction.
-              </figcaption>
-            </figure>
-
-            <figure class="figure-card">
-              <p class="figure-label">MEASUREMENT</p>
-              <h3>Width and position in the same 3D frame</h3>
-              <div
-                class="figure-scroll"
-                tabindex="0"
-                aria-label="3D crack-width measurement workflow, horizontally scrollable on small screens"
-              >
-                <img
-                  src="./assets/images/width-workflow.png"
-                  alt="Workflow for localizing and measuring crack width from a semantic 3D point cloud."
-                  width="1264"
-                  height="491"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <figcaption>
-                The reconstructed semantic point cloud couples a crack's measured
-                width with its physical 3D location.
-              </figcaption>
-            </figure>
+        </header>
+        <div class="study-summary">
+          <div>
+            <h3>Detect cracks and measure their width in 3D</h3>
+            <p>Crack-aware prompts guide SAM refinement of the initial segmentation. Image and LiDAR fusion places those crack regions in a metric 3D point cloud, where the method can localize cracks and automatically measure their width.</p>
+            <a class="detail-link" href="measurement.html">Explore CrackSeg methods and results <span aria-hidden="true">→</span></a>
           </div>
+          <dl class="evidence">
+            <div><dt>46.61% → 53.21%</dt><dd>DeepLabv3+ zero-shot IoU after SAM refinement</dd></div>
+            <div><dt>0.09 mm</dt><dd>Mean absolute width error against microscope readings at 15 locations</dd></div>
+          </dl>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section section-soft results-section" aria-labelledby="results-title">
-        <div class="container-wide">
-          <p class="section-kicker">EXPERIMENTS</p>
-          <h2 id="results-title">Generalization and measurement accuracy</h2>
-          <p class="section-lead">
-            The paper evaluates unseen-scene segmentation and validates automatic 3D
-            measurements against microscope references.
-          </p>
-
-          <div class="metrics" aria-label="Key results">
-            <article class="metric-card">
-              <strong>+6.6</strong>
-              <span>IoU points for DeepLabV3+ in the zero-shot setting</span>
-            </article>
-            <article class="metric-card">
-              <strong>0.09 mm</strong>
-              <span>mean absolute crack-width error across 15 measurements</span>
-            </article>
-            <article class="metric-card">
-              <strong>9,260</strong>
-              <span>annotated RGB images, as reported in the paper and repository</span>
-            </article>
+    <section class="section section-soft study-section" id="tracking" aria-labelledby="tracking-title">
+      <div class="container">
+        <header class="study-header">
+          <p class="section-kicker">Crack Evolution · Cross-view tracking</p>
+          <h2 id="tracking-title">Cross-View and Cross-Time Tracking of Crack Evolution in Concrete</h2>
+          <p class="authors tracking-authors">Pengru Deng<sup>a</sup>, <a href="mailto:jiapengyao@csu.edu.cn">Jiapeng Yao<sup>a,*</sup></a>, Su Wang<sup>c</sup>, Xuhui He<sup>a</sup>, Zhao Wang<sup>a</sup>,  Takanori Emaru<sup>d</sup>, Takashi Matsumoto<sup>d</sup>, and <a href="mailto:xinrun.li@ncl.ac.uk">Xinrun Li<sup>b,**</sup></a></p>
+          <div class="affiliations"><p><sup>a</sup> School of Civil Engineering, Central South University, Changsha, China</p><p><sup>b</sup> School of Computing, Newcastle University, Tyne and Wear, United Kingdom</p><p><sup>c</sup> Nvidia, Shanghai, China</p><p><sup>d</sup> Faculty of Engineering, Hokkaido University, Sapporo 060-8628, Japan</p></div>
+          <p class="study-venue">*, ** Corresponding authors · arXiv preprint, 2026</p>
+          <div class="paper-links" role="group" aria-label="Crack Evolution resources">
+            <a class="button button-dark" href="https://arxiv.org/abs/2610.33550">arXiv <span aria-hidden="true">↗</span></a>
+            <a class="button button-outline" role="link" aria-disabled="true">Paper</a>
+            <a class="button button-outline" role="link" aria-disabled="true">Code</a>
+            <a class="button button-outline" href="#cite-crack-evolution">BibTeX</a>
           </div>
-
-          <div
-            class="table-wrap"
-            tabindex="0"
-            aria-label="Zero-shot segmentation results, horizontally scrollable"
-          >
-            <table>
-              <caption>
-                Zero-shot crack IoU on unfamiliar field scenes. Gains are absolute
-                percentage points after SAM refinement.
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">Base model</th>
-                  <th scope="col">Baseline IoU</th>
-                  <th scope="col">SAM-refined IoU</th>
-                  <th scope="col">Gain</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Swin Transformer</th>
-                  <td>36.77</td>
-                  <td><strong>44.15</strong></td>
-                  <td class="gain">+7.38</td>
-                </tr>
-                <tr>
-                  <th scope="row">TernausNet</th>
-                  <td>42.13</td>
-                  <td><strong>49.92</strong></td>
-                  <td class="gain">+7.79</td>
-                </tr>
-                <tr>
-                  <th scope="row">TransUNet</th>
-                  <td>45.28</td>
-                  <td><strong>52.04</strong></td>
-                  <td class="gain">+6.76</td>
-                </tr>
-                <tr>
-                  <th scope="row">DeepLabV3+</th>
-                  <td>46.61</td>
-                  <td><strong>53.21</strong></td>
-                  <td class="gain">+6.60</td>
-                </tr>
-              </tbody>
-            </table>
+        </header>
+        <div class="study-summary">
+          <div>
+            <h3>Track the same crack and trace its new growth</h3>
+            <p>Align adjacent observations, use crack shape to separate crossing branches and reconnect compatible fragments, and assign newly visible extension to each tracked crack. Growth length is evaluated in image coordinates.</p>
+            <a class="detail-link" href="crack-evolution/index.html">Explore Crack Evolution methods and results <span aria-hidden="true">→</span></a>
           </div>
-
-          <figure class="figure-card result-figure">
-            <p class="figure-label">RUNNABLE DEMO</p>
-            <h3>Refinement recovers continuous crack structure</h3>
-            <div
-              class="figure-scroll"
-              tabindex="0"
-              aria-label="Segmentation demo comparison, horizontally scrollable on small screens"
-            >
-              <img
-                src="./assets/images/segmentation-demo.png"
-                alt="Three field examples comparing input images, coarse DeepLab masks, SAM-refined masks, and pixels recovered by refinement."
-                width="3200"
-                height="1800"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <figcaption>
-              The public demo bundle reproduces this comparison from three field
-              images and preserves the exact input, coarse-mask, and refined-mask
-              outputs.
-            </figcaption>
-          </figure>
+          <dl class="evidence">
+            <div><dt>8 specimens</dt><dd>53 stage images and 45 adjacent-stage transitions</dd></div>
+            <div><dt>0.547 · 0.753</dt><dd>HOTA(0) at IoU 0.05 · pooled crack-length change error (CLCE)</dd></div>
+          </dl>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section qualitative-section" aria-labelledby="qualitative-title">
-        <div class="container-wide">
-          <p class="section-kicker">3D RESULTS</p>
-          <h2 id="qualitative-title">Crack semantics preserved in reconstruction</h2>
-          <p class="section-lead">
-            Multi-frame fusion places image-derived crack masks onto a dense,
-            real-scale point cloud while retaining the geometry needed for
-            measurement.
-          </p>
-
-          <figure class="figure-card feature-figure">
-            <div
-              class="figure-scroll"
-              tabindex="0"
-              aria-label="Reconstruction and measurement results, horizontally scrollable on small screens"
-            >
-              <img
-                src="./assets/images/reconstruction-results.png"
-                alt="Structural reconstruction, crack semantic fusion, and automatic crack-width measurement results."
-                width="1448"
-                height="2037"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <figcaption>
-              Field data move through reconstruction, semantic projection, and
-              crack-width measurement in one coordinate-consistent pipeline.
-            </figcaption>
-          </figure>
-
-          <figure class="figure-card feature-figure">
-            <p class="figure-label">COMPARATIVE RECONSTRUCTION</p>
-            <h3>Metric-scale reconstruction compared with SfM</h3>
-            <div
-              class="figure-scroll"
-              tabindex="0"
-              aria-label="3D reconstruction comparison, horizontally scrollable on small screens"
-            >
-              <img
-                src="./assets/images/reconstruction-comparison.png"
-                alt="Comparison between the proposed LiDAR-image fusion reconstruction and an SfM-based approach."
-                width="2035"
-                height="1324"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <figcaption>
-              Qualitative comparison of the proposed SLAM reconstruction and
-              SfM/COLMAP. The paper reports density, surface roughness, geometric
-              accuracy, and efficiency in its quantitative comparison.
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="section section-dark resources-section" aria-labelledby="resources-title">
-        <div class="container-wide">
-          <p class="section-kicker section-kicker-light">REPRODUCIBILITY</p>
-          <h2 id="resources-title">Code, data, and an executable path</h2>
-          <p class="section-lead section-lead-light">
-            The repository exposes five pipeline stages with explicit input/output
-            contracts. Lightweight demos are separated from the full ROS and raw-data
-            workflow.
-          </p>
-
-          <div class="resource-grid">
-            <a
-              class="resource-card"
-              href="https://github.com/XR-Lee/CrackSeg"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="resource-overline">SOURCE</span>
-              <strong>CrackSeg repository</strong>
-              <span>Five numbered stages, scripts, configuration, and documentation.</span>
-              <span class="resource-arrow" aria-hidden="true">↗</span>
-              <span class="sr-only">Opens in a new tab.</span>
-            </a>
-            <a
-              class="resource-card"
-              href="https://drive.google.com/drive/folders/1gFtSRWuKS7C0BrCifCmJpb7bshKcNFeG"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="resource-overline">DATA</span>
-              <strong>Runnable demo bundle</strong>
-              <span>Sample images, expected masks, smoke-test point clouds, and checksums.</span>
-              <span class="resource-arrow" aria-hidden="true">↗</span>
-              <span class="sr-only">Opens in a new tab.</span>
-            </a>
-            <a
-              class="resource-card"
-              href="https://github.com/XR-Lee/CrackSeg/blob/main/docs/REPRODUCIBILITY.md"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="resource-overline">GUIDE</span>
-              <strong>Reproduction matrix</strong>
-              <span>Tested demo stages, recommended environments, and workstation/ROS boundaries.</span>
-              <span class="resource-arrow" aria-hidden="true">↗</span>
-              <span class="sr-only">Opens in a new tab.</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="bibtex" class="section bibtex-section" aria-labelledby="bibtex-title">
-        <div class="container-reading">
+    <section class="section bibtex-section combined-citations" aria-labelledby="citations-title">
+      <div class="container-reading">
+        <h2 id="citations-title">Citations</h2>
+        <article id="cite-crackseg">
           <div class="bibtex-heading">
-            <div>
-              <p class="section-kicker">CITATION</p>
-              <h2 id="bibtex-title">BibTeX</h2>
-            </div>
-            <button class="copy-button" type="button" data-copy-target="citation-code">
-              <span class="copy-label" role="status" aria-live="polite">Copy citation</span>
-            </button>
+            <h3>CrackSeg</h3>
+            <button class="copy-button" type="button" aria-label="Copy CrackSeg citation" data-copy-target="bibtex-crackseg"><span class="copy-label" role="status" aria-live="polite">Copy citation</span></button>
           </div>
-          <pre><code id="citation-code">@article{deng2026crack3d,
+          <pre><code id="bibtex-crackseg">@article{deng2026crack3d,
   title   = {{3D} Modeling and Automated Measurement of Concrete Cracks via
              Segment Anything Refinement and Visual Inertial {LiDAR} Fusion},
   author  = {Deng, Pengru and Yao, Jiapeng and Li, Chun and Wang, Su and
@@ -501,23 +139,32 @@
   publisher = {Elsevier},
   doi     = {10.1016/j.cacaie.2026.100019}
 }</code></pre>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container-wide footer-inner">
-        <p>
-          <strong>CrackSeg</strong><br />
-          3D concrete crack modeling and automated measurement.
-        </p>
-        <p>
-          Independent academic project page built from the published paper and
-          repository assets. <span id="copyright-year">2026</span>.
-        </p>
+        </article>
+        <article id="cite-crack-evolution">
+          <div class="bibtex-heading">
+            <h3>Crack Evolution</h3>
+            <button class="copy-button" type="button" aria-label="Copy Crack Evolution citation" data-copy-target="bibtex-crack-evolution"><span class="copy-label" role="status" aria-live="polite">Copy citation</span></button>
+          </div>
+          <pre><code id="bibtex-crack-evolution">@misc{deng2026crossview,
+  title         = {Cross-View and Cross-Time Tracking of Crack Evolution in Concrete},
+  author        = {Deng, Pengru and Yao, Jiapeng and Wang, Su and He, Xuhui and
+                   Wang, Zhao and Emaru, Takanori and Matsumoto, Takashi and Li, Xinrun},
+  year          = {2026},
+  eprint        = {2610.33550},
+  archivePrefix = {arXiv},
+  primaryClass  = {eess.IV},
+  url           = {https://arxiv.org/abs/2610.33550}
+}</code></pre>
+        </article>
       </div>
-    </footer>
-
-    <script src="./assets/js/site.js" defer></script>
-  </body>
+    </section>
+  </main>
+  <footer>
+    <div class="container-wide footer-inner">
+      <span>Concrete Crack Inspection and Monitoring</span>
+      <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+  <script src="assets/js/combined.js" defer></script>
+</body>
 </html>

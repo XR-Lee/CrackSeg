@@ -11,3 +11,7 @@ dataset distribution terms.
 
 The CrackSeg source repository is licensed separately; see the repository's
 top-level `LICENSE` and the notices attached to vendored third-party components.
+
+The scientific figures in `crack-evolution/assets/` are from the authors’
+preprint **Cross-View and Cross-Time Tracking of Crack Evolution in Concrete**,
+arXiv:2610.33550v1. The two homepage tracking panels are drawn from Figure 9(b).
