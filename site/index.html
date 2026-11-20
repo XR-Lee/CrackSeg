@@ -14,7 +14,7 @@
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="container hero-inner">
       <h1>Concrete Crack Inspection and Monitoring</h1>
-      <p class="hero-subtitle">Two complementary studies on concrete cracks: detect cracks and measure their width in 3D, and track how individual cracks grow across changing viewpoints.</p>
+      <p class="hero-subtitle">I study how to detect cracks in concrete, measure their width in 3D, and follow their growth over time.</p>
       <nav class="paper-links" aria-label="Research studies">
         <a class="button button-dark" href="#measurement">Detection &amp; 3D measurement</a>
         <a class="button button-outline" href="#tracking">Crack tracking</a>
@@ -28,10 +28,10 @@
         <div class="study-previews">
           <figure class="study-preview">
             <h3><a href="#measurement">Where is the crack, and how wide is it?</a></h3>
-            <a class="preview-art measurement-art" href="measurement.html#overview-title">
-              <img src="assets/images/pipeline-overview.png" width="1178" height="519" alt="CrackSeg workflow from crack segmentation to semantic 3D reconstruction and width measurement.">
+            <a class="preview-art measurement-art" href="measurement.html#reconstruction-results">
+              <img src="assets/images/crackseg-walkway-point-cloud.webp" width="820" height="316" alt="Colorized 3D point cloud of a concrete walkway slab with detected cracks marked in red.">
             </a>
-            <figcaption>CrackSeg maps image detections to a point cloud with real-world scale.</figcaption>
+            <figcaption>A reconstructed walkway slab. The red traces show cracks on the 3D point cloud.</figcaption>
           </figure>
           <figure class="study-preview">
             <h3><a href="#tracking">Is it the same crack, and what grew?</a></h3>
@@ -42,7 +42,7 @@
             <figcaption>Green marks inherited crack segments. Yellow marks growth since the preceding observation.</figcaption>
           </figure>
         </div>
-        <p class="study-connection">The tracking study reuses CrackSeg’s DeepLabv3+ segmentation checkpoint. Each study evaluates its own method and outcomes.</p>
+        <p class="study-connection">To follow cracks over time, I started with the DeepLabv3+ segmentation model developed in CrackSeg.</p>
       </div>
     </section>
 
